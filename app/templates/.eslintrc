@@ -1,0 +1,31 @@
+{
+    "parser": "babel-eslint",
+    "extends": "airbnb",
+    "rules": {
+      "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx"] }],
+      "linebreak-style": 0,
+      "jsx-a11y/label-has-for": [ 2, {
+          "components": [ "Label" ],
+          "required": {
+              "every": [ "nesting", "id" ]
+          },
+          "allowChildren": false
+      }],
+      "jsx-a11y/click-events-have-key-events": 0,
+      "jsx-a11y/no-noninteractive-element-interactions": 0,
+      "jsx-a11y/anchor-is-valid": 0
+     },
+     "globals": {
+        "window": true,
+        "document": true,
+        "navigator": true,
+        "localStorage": true,
+        "URL": true,
+        "FormData": true,
+        "test": true,
+        "it": true,
+        "expect": true,
+        "describe": true,
+        "jest": true
+      }
+}

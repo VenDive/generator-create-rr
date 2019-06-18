@@ -1,0 +1,4 @@
+@import './main/main';
+<% if (ui_library === 'ant') { %>
+@import 'antd/dist/antd.css';
+<% }  %>
