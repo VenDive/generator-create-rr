@@ -2,15 +2,6 @@
 <%= title %>
 ===================
 
-How to Run
-----------------------------------------------------------
-use npm to install packages, yarn installing package have issue with babel
-```javascript
-
-npm install
-
-```
-
 Commands/ Scripts
 ----------------------------------------------------------
 to run scripts you can use yarn or npm both
