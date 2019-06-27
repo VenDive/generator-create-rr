@@ -74,11 +74,6 @@ const config = {
       isTemplate: true,
     },
     {
-      source: '.env',
-      destination: '.env',
-      isTemplate: false,
-    },
-    {
       source: '.eslintrc',
       destination: '.eslintrc',
       isTemplate: false,
