@@ -35,21 +35,21 @@ Once project is created it will have few commands predefined.
 to run scripts you can use yarn or npm both
 ```javascript
 
-npm  run  start
+npm  run  start // To Start Project
 
-npm  run  build
+npm  run  build // To make a Build
 
-npm  run  test
+npm  run  test // Unit test
 
-npm  run  coverage
+npm  run  coverage  // Unit test coverage
 
-npm  run  lint
+npm  run  lint // Lint issues at once
 
-npm  run  lintfix
+npm  run  lintfix // fix fixable issue by lint auto
 
-npm  run  build-css
+npm  run  build-css // Generate css from scss
 
-npm  run  watch-css
+npm  run  watch-css // Generate css and watch changes from scss
 
 npm run eject // Caution: will eject all config files.if you want to exclude react-scripts  
 

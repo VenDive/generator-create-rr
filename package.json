@@ -1,10 +1,14 @@
 {
   "name": "generator-create-rr",
-  "version": "0.1.6",
-  "description": "it is an boilerplate for react projects",
+  "version": "0.1.7",
+  "description": "it is a boilerplate for react redux projects with basic file structure and libraries",
   "files": [
     "/app"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/VenDive/generator-create-rr"
+  },
   "keywords": [
     "react",
     "redux",
