@@ -69,6 +69,11 @@ const config = {
       isTemplate: true,
     },
     {
+      source: 'resources/ignored_files/App.css',
+      destination: 'src/styles/App.css',
+      isTemplate: false,
+    },
+    {
       source: 'src/routing/App.js',
       destination: 'src/routing/App.js',
       isTemplate: true,
@@ -79,7 +84,7 @@ const config = {
       isTemplate: false,
     },
     {
-      source: '.gitignore',
+      source: '.npmignore',
       destination: '.gitignore',
       isTemplate: false,
     },
