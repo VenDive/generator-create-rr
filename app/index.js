@@ -34,6 +34,12 @@ module.exports = class extends Generator {
       },
       {
         type: "input",
+        name: "dirName",
+        message: "Directory Name: ",
+        required: true,
+      },
+      {
+        type: "input",
         name: "description",
         message: "Project Description",
         default: ""
@@ -79,7 +85,7 @@ module.exports = class extends Generator {
     }
   }
   writing() {
-    const directory = this.answers.name.replace(' ', '_').replace('-', '_').replace('.', '').replace(',', '');
+    const directory = this.answers.dirName.replace(' ', '_').replace('-', '_').replace('.', '').replace(',', '').replace('&', 'N');
     mkdirp.sync(directory);
     const answers = {
       app_name: this.answers.name.replace(' ', '-').replace('_', '-').replace('.', '').replace(',', ''),
