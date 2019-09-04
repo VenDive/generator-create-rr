@@ -132,7 +132,7 @@ module.exports = class extends Generator {
     }
   }
   install() {
-    const directory = this.answers.name.replace(' ', '_');
+    const directory = this.answers.dirName.replace(' ', '_').replace('-', '_').replace('.', '').replace(',', '').replace('&', 'N');
     var npmdir = process.cwd() + '/' + directory;
     process.chdir(npmdir);
     this.npmInstall();
