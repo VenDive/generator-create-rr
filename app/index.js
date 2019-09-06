@@ -85,10 +85,10 @@ module.exports = class extends Generator {
     }
   }
   writing() {
-    const directory = this.answers.dirName.replace(' ', '_').replace('-', '_').replace('.', '').replace(',', '').replace('&', 'N');
+    const directory = this.answers.dirName.replace(/ /g, '_').replace(/-/g, '_').replace(/\./g, '').replace(/,/g, '').replace(/&/g, 'N');
     mkdirp.sync(directory);
     const answers = {
-      app_name: this.answers.name.replace(' ', '-').replace('_', '-').replace('.', '').replace(',', ''),
+      app_name: this.answers.name.replace(/ /g, '-').replace(/_/g, '-').replace(/\./g, '').replace(/,/g, ''),
       app_version: this.answers.app_version,
       title: this.answers.name,
       year: new Date().getFullYear(),
@@ -132,7 +132,7 @@ module.exports = class extends Generator {
     }
   }
   install() {
-    const directory = this.answers.dirName.replace(' ', '_').replace('-', '_').replace('.', '').replace(',', '').replace('&', 'N');
+    const directory = this.answers.dirName.replace(/ /g, '_').replace(/-/g, '_').replace(/\./g, '').replace(/,/g, '').replace(/&/g, 'N');
     var npmdir = process.cwd() + '/' + directory;
     process.chdir(npmdir);
     this.npmInstall();
