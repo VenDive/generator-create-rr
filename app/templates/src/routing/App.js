@@ -8,7 +8,8 @@ import {
 import createHistory from 'history/createBrowserHistory';
 import store from '../redux/store';
 import { ROOT } from '../configs/routeNames';<% if (ui_library == 'material') { %><% if (ui_login) { %>
-import Home from '../components/SignIn';<% } } if (!ui_login) { %>
+import Home from '../components/SignIn';<% } } if (ui_library == 'ant') { %><% if (ui_login){ %>
+import Home from '../components/login/Login';<% } } if (ui_library == 'none') { %>
 import Home from '../containers/userContainer';<% } %>
 import '../styles/App.css';
 
