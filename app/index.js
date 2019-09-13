@@ -68,15 +68,31 @@ module.exports = class extends Generator {
           ...Object.values(config.ui),
         ],
         required: true
+      },
+      {
+        type: "list",
+        name: "translation",
+        message: "Do you want MultiLanguage Translation Settings?",
+        choices: [
+          {
+            name: "Yes",
+            value: true
+          },
+          {
+            name: "No",
+            value: false
+          },
+        ],
+        required: true
       }
     ]);
     if (this.answers.ui_library !== 'none') {
-      if (this.answers.ui_library === 'material') {
+      if (this.answers.ui_library === config.ui.material.value || this.answers.ui_library === config.ui.ant.value) {
         this.ui_library_answers = await this.prompt([
           {
             type: "confirm",
             name: "login",
-            message: "Do you need Login Screen",
+            message: "Do you need Login Screen?",
             default: false,
             required: true
           }
@@ -94,7 +110,8 @@ module.exports = class extends Generator {
       year: new Date().getFullYear(),
       ui_library :this.answers.ui_library,
       ui_login: this.ui_library_answers.login,
-      private: this.answers.private
+      private: this.answers.private,
+      transaltion: this.answers.translation,
     }
     config.files.forEach(file => {
       if (file.isTemplate) {
@@ -110,14 +127,69 @@ module.exports = class extends Generator {
         );
       }
     });
+    if (this.answers.translation) {
+      this.fs.copy(
+        this.templatePath('resources/translationsResources/translations'),
+        this.destinationPath(directory+'/src/translations')
+      );
+      this.fs.copy(
+        this.templatePath('resources/translationsResources/UserDetails.js'),
+        this.destinationPath(directory+'/src/components/UserDetails.js')
+      );
+    }
     switch (this.answers.ui_library) {
       case config.ui.ant.value: {
+        if (this.ui_library_answers.login) {
+          if (this.answers.translation) {
+            this.fs.copy(
+              this.templatePath('resources/ant/login/components/LoginWithTranslation.js'),
+              this.destinationPath(directory+'/src/components/login/Login.js')
+            );
+          } else {
+            this.fs.copy(
+              this.templatePath('resources/ant/login/components/Login.js'),
+              this.destinationPath(directory+'/src/components/login/Login.js')
+            );
+          }
+          this.fs.copy(
+            this.templatePath('resources/ant/login/containers/loginContainer.js'),
+            this.destinationPath(directory+'/src/containers/loginContainer.js')
+          );
+          this.fs.copy(
+            this.templatePath('resources/ant/login/actions/loginActions.js'),
+            this.destinationPath(directory+'/src/redux/actions/loginActions.js')
+          );
+          this.fs.copy(
+            this.templatePath('resources/ant/login/actions/index.js'),
+            this.destinationPath(directory+'/src/redux/actions/index.js')
+          );
+          this.fs.copy(
+            this.templatePath('resources/ant/login/reducers/authReducer.js'),
+            this.destinationPath(directory+'/src/redux/reducers/authReducer.js')
+          );
+          this.fs.copy(
+            this.templatePath('resources/ant/login/reducers/rootReducer.js'),
+            this.destinationPath(directory+'/src/redux/reducers/rootReducer.js')
+          );
+          this.fs.copy(
+            this.templatePath('resources/ant/login/style/login.scss'),
+            this.destinationPath(directory+'/src/styles/scss/main/login.scss')
+          );
+          this.fs.copy(
+            this.templatePath('resources/ant/login/configs/constants.js'),
+            this.destinationPath(directory+'/src/configs/constants.js')
+          );
+          this.fs.copy(
+            this.templatePath('resources/ant/login/configs/messages.js'),
+            this.destinationPath(directory+'/src/configs/messages.js')
+          );
+        }
         break;
       }
       case config.ui.material.value: {
         if (this.ui_library_answers.login) {
           this.fs.copy(
-            this.templatePath('resources/SignIn.js'),
+            this.templatePath('resources/material/SignIn.js'),
             this.destinationPath(directory+'/src/components/SignIn.js')
           );
         }
@@ -136,7 +208,11 @@ module.exports = class extends Generator {
     var npmdir = process.cwd() + '/' + directory;
     process.chdir(npmdir);
     this.npmInstall();
-    var packages = ['axios'];
+    var packages = ['axios', 'crypto-js'];
+    if (this.answers.translation) {
+      packages.push('i18next@17.0.13');
+      packages.push('react-i18next@10.12.2');
+    }
     switch (this.answers.ui_library) {
       case config.ui.ant.value: {
         packages.push('antd');

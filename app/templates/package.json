@@ -17,7 +17,7 @@
     "redux-thunk": "2.3.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "npm run build-css && react-scripts start",
     "build": "npm run build-css && GENERATE_SOURCEMAP=false react-scripts build",
     "test": "react-scripts test",
     "coverage": "react-scripts test --env=jsdom --coverage",

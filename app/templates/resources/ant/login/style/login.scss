@@ -1,0 +1,19 @@
+#login-screen .login-form {
+  width: 300px;
+}
+#login-screen .login-form-forgot {
+  float: right;
+}
+#login-screen .login-form-button {
+  width: 100%;
+}
+#login-screen .logo-img {
+  text-align: center;
+}
+#login-screen .form-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  flex-direction: column;
+}
