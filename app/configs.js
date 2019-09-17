@@ -64,6 +64,11 @@ const config = {
       isTemplate: true,
     },
     {
+      source: 'src/redux/store/index.js',
+      destination: 'src/redux/store/index.js',
+      isTemplate: true,
+    },
+    {
       source: 'src/styles/scss/App.scss',
       destination: 'src/styles/scss/App.scss',
       isTemplate: true,
