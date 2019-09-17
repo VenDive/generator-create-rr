@@ -1,3 +1,13 @@
+React Redux Generator
+===================
+[![npm version](https://badge.fury.io/js/generator-create-rr.svg)](https://badge.fury.io/js/generator-create-rr)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/VenDive/generator-create-rr/issues)
+[![HitCount](http://hits.dwyl.io/VenDive/generator-create-rr.svg)](http://hits.dwyl.io/VenDive/generator-create-rr)
+[![downloads][downloads-image]][downloads-url]
+
+[downloads-image]: https://img.shields.io/npm/dt/generator-create-rr.svg?style=flat
+[downloads-url]: https://npmjs.org/package/generator-create-rr
+
 # Welcome to React Redux Generator
 
 This is Yeoman generator for app of React Redux with basic scaffolding and structure of files and UI libraries options.
