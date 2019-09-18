@@ -1,5 +1,5 @@
 
-import CryptoJS from './crypto';
+import { CryptoJS } from './libs';
 
 export const ENCRYPTION_KEY = 'ee06040416674a04af3ff4f7881b76f2';
 
