@@ -31,12 +31,14 @@ module.exports = class extends Generator {
         name: "name",
         message: "Project name: ",
         required: true,
+        default: "react-app"
       },
       {
         type: "input",
         name: "dirName",
         message: "Directory Name: ",
         required: true,
+        default: "react-app"
       },
       {
         type: "input",
