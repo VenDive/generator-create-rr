@@ -1,9 +1,9 @@
-var Generator = require('yeoman-generator');
-var chalk = require('chalk');
-var yosay = require('yosay');
-var mkdirp = require('mkdirp');
-var config = require('./configs');
-
+const Generator = require('yeoman-generator');
+const chalk = require('chalk');
+const yosay = require('yosay');
+const mkdirp = require('mkdirp');
+const config = require('./configs');
+const fs = require('fs');
 
 module.exports = class extends Generator {
   // The name `constructor` is important here
@@ -207,6 +207,7 @@ module.exports = class extends Generator {
     const directory = this.answers.dirName.replace(/ /g, '_').replace(/-/g, '_').replace(/\./g, '').replace(/,/g, '').replace(/&/g, 'N');
     var npmdir = process.cwd() + '/' + directory;
     process.chdir(npmdir);
+    fs.writeFileSync('.env', 'NODE_PATH=src');
     this.npmInstall();
     var packages = ['axios', 'crypto-js'];
     if (this.answers.translation) {
