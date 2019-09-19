@@ -27,7 +27,6 @@ my-app*
 template/src/__tests__/__snapshots__/
 lerna-debug.log
 /.changelog
-.env
 .env*.local
 package-lock.json
 yarn.lock
