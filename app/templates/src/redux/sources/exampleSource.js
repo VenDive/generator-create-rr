@@ -1,6 +1,6 @@
 // import axios from 'axios';
-// import { URL } from '../configs/urls';
-// import { ERROR_RESPONSE } from '../configs/messageConstants';
+// import { URL } from 'configs/urls';
+// import { ERROR_RESPONSE } from 'configs/messageConstants';
 
 // const getSource = (payload) => new Promise((resolve, reject) => {
 //   axios

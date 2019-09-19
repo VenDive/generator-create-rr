@@ -1,4 +1,4 @@
-import * as actionTypes from '../actionTypes';
+import * as actionTypes from 'redux/actionTypes';
 
 const initialState = {
   isLoading: false,

@@ -89,6 +89,16 @@ const config = {
       isTemplate: false,
     },
     {
+      source: '.env',
+      destination: '.env',
+      isTemplate: false,
+    },
+    {
+      source: 'jsconfig.json',
+      destination: 'jsconfig.json',
+      isTemplate: false,
+    },
+    {
       source: '.npmignore',
       destination: '.gitignore',
       isTemplate: false,

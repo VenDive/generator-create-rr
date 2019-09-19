@@ -2,7 +2,7 @@ import {
   LOGOUT_SUCCESS,
   LOGOUT_FAIL,
   LOGOUT_INPROGRESS,
-} from '../actionTypes';
+} from 'redux/actionTypes';
 
 export const logoutSuccess = () => ({
   type: LOGOUT_SUCCESS,

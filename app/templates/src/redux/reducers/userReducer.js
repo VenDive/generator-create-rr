@@ -1,4 +1,4 @@
-import * as types from '../actionTypes';
+import * as types from 'redux/actionTypes';
 
 const initialState = {
   fullName: '<%= title %>',

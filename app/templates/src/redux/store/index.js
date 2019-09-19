@@ -2,7 +2,7 @@ import { applyMiddleware, createStore } from 'redux';
 
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
-import rootReducer from '../reducers/rootReducer';
+import rootReducer from 'redux/reducers/rootReducer';
 
 // eslint-disable-next-line
 const devToolsExt = window.__REDUX_DEVTOOLS_EXTENSION__;

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import UserDetails from '../components/UserDetails';
-import actions from '../redux/actions';
+import UserDetails from 'components/UserDetails';
+import actions from 'redux/actions';
 
 function mapStateToProps(state) {
   return {
