@@ -27,5 +27,12 @@
         "expect": true,
         "describe": true,
         "jest": true
-      }
+      },
+      "settings": {
+        "import/resolver": {
+          "node": {
+            "paths": ["src"]
+          }
+        },
+      },
 }

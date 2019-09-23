@@ -1,4 +1,4 @@
-import { logoutUser } from './userActions';
+import { logoutUser } from 'redux/actions/userActions';
 
 export default {
   logoutUser,

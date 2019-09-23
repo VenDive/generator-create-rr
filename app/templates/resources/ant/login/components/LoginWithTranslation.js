@@ -15,12 +15,12 @@ import {
   validEmail,
   requiredPassword,
   validPassword,
-} from '../../configs/messages';
+} from 'configs/messages';
 import {
   passwordRule,
   validationTrigger,
   // logoAltText,
-} from '../../configs/constants';
+} from 'configs/constants';
 
 
 class LoginComponent extends Component {

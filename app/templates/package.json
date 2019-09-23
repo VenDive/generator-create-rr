@@ -38,6 +38,7 @@
     "enzyme-adapter-react-16": "1.12.1",
     "enzyme": "3.9.0",
     "eslint-config-airbnb": "17.1.0",
+    "eslint-plugin-import": "2.18.2",
     "sinon": "7.3.2"
   }
 }
