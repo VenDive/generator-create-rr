@@ -113,7 +113,7 @@ module.exports = class extends Generator {
       ui_library :this.answers.ui_library,
       ui_login: this.ui_library_answers.login,
       private: this.answers.private,
-      transaltion: this.answers.translation,
+      translation: this.answers.translation,
     }
     config.files.forEach(file => {
       if (file.isTemplate) {
