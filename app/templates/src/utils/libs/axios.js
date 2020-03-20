@@ -126,6 +126,14 @@ export const setupInterceptors = ({ debug = false }) => {
           // 401 status means unauthorized
           // Add code to handle unauthorized request
         }
+        if (status === 404 ) {
+          // 404 status means not found
+          // Add code to handle a request whin API is not available
+        }
+        if (status === 500 ) {
+          // 500 status means server error
+          // Add code to handle when error happens on tne server
+        }
       } else if (error.request) {
         // Request made, but no response was received
         echo({ show: debug, type: 'dir', message: error.request });
