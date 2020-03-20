@@ -53,10 +53,19 @@ module.exports = class extends Generator {
         default: "0.1.0"
       },
       {
-        type: "confirm",
+        type: "list",
         name: "private",
         message: "Is this repo private?(private repo won't be able to npm publish)",
-        default: false
+        choices: [
+          {
+            name: "Yes",
+            value: true
+          },
+          {
+            name: "No",
+            value: false
+          },
+        ],
       },
       {
         type: "list",
