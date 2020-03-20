@@ -16,8 +16,6 @@ This is Yeoman generator for app of React Redux with basic scaffolding and struc
 
  - Ant Design
  - Material UI
- - Sementic UI
- - React Bootstrap
 
 # Installation
 
