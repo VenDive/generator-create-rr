@@ -40,11 +40,4 @@ describe('axios' , () => {
 
   });
 
-  it('should throw error after axios reuest', async () => {
-    const url = 'url';
-    const error = 'f';
-    const method = 'GET';
-    expect(await request({ url, method})).rejects.toEqual(new Error('Network Error'));
-  });
-
 })
