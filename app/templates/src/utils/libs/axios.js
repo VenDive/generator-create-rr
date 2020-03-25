@@ -1,5 +1,8 @@
 import axios from 'axios';
 
+// Remove this function and import function getting token from local storage.
+const getToken = () => 'token';
+
 /**
  * @description Get authorization token
  * @return {String}
@@ -21,7 +24,7 @@ const onGetTimeZone = () => new Date().toString().split(' ')[5];
  * @define type: possible values 'authorization' || 'public'
  * @return {Object}
  */
-const onGetHeaders = type => {
+export const onGetHeaders = type => {
   const ALL_TYPES = ['authorization', 'public'];
   if (!type) {
     throw new Error('request func internal onGetHeaders arg @param type is missing');
@@ -71,9 +74,7 @@ export const request = async ({
     throw new Error('request func arg @param url is missing');
   }
   if (!method) {
-    throw new Error(`
-      request func arg @param method is missing. Valid options "GET"|"POST"|"PUT" etc
-    `);
+    throw new Error(`request func arg @param method is missing. Valid options "GET"|"POST"|"PUT" etc`);
   }
 
   // Overrides headers object based on variant if "customHeaders" object provided
