@@ -1,9 +1,9 @@
 
 import { CryptoJS } from './libs';
 
-export const ENCRYPTION_KEY = 'ee06040416674a04af3ff4f7881b76f2';
+export const ENCRYPTION_KEY = process.env.REACT_APP_ENCRYPTION_KEY || 'abc';
 
-export const saveToLocal = (data, key, isJson = true, isEncrypted = false) => {
+export const saveToLocal = (key, data, isJson = true, isEncrypted = false) => {
   let saveData = data;
   if (data && isJson) {
     saveData = JSON.stringify(data);
@@ -30,4 +30,4 @@ export const removeFromLocal = (key) => {
   global.localStorage.removeItem(key);
 };
 
-export const existInLocal = key => global.localStorage.getItem(key) != null;
+export const existInLocal = (key) => global.localStorage.getItem(key) != null;
