@@ -16,11 +16,6 @@ const config = {
       isTemplate: false,
     },
     {
-      source: 'rewire-eslint',
-      destination: 'rewire-eslint',
-      isTemplate: false,
-    },
-    {
       source: 'src',
       destination: 'src',
       isTemplate: false,
@@ -66,6 +61,16 @@ const config = {
       isTemplate: false,
     },
     {
+      source: 'bitbucket-pipelines.yml',
+      destination: 'bitbucket-pipelines.yml',
+      isTemplate: false,
+    },
+    {
+      source: 'jest.config.js',
+      destination: 'jest.config.js',
+      isTemplate: false,
+    },
+    {
       source: 'jsconfig.json',
       destination: 'jsconfig.json',
       isTemplate: false,
@@ -78,7 +83,7 @@ const config = {
     {
       source: 'webpack.config.extend.js',
       destination: 'webpack.config.extend.js',
-      isTemplate: false,
+      isTemplate: true,
     },
     {
       source: 'webpackDevServer.config.extend.js',
@@ -122,6 +127,23 @@ const config = {
       destination: '/src/routing/Pages.js',
       isTemplate: false,
     },
+    {
+      source: 'resources/withLogin/modules/ForgotPassword/__tests__/forgot_password.test.js',
+      destination: '/src/app/modules/ForgotPassword/__tests__/forgot_password.test.js',
+      isTemplate: true,
+    },
+    {
+      source: 'resources/withLogin/modules/Login/__tests__/login.test.js',
+      destination: '/src/app/modules/Login/__tests__/login.test.js',
+      isTemplate: true,
+    },
+  ],
+  ant_files: [
+    {
+      source: 'resources/ant/theme.json',
+      destination: 'theme.json',
+      isTemplate: false,
+    }
   ],
   ant_login_files: [
     {

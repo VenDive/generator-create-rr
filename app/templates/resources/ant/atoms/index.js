@@ -7,3 +7,9 @@ export {
   Button,
   PrivateRoute,
 };
+
+export default {
+  Input,
+  Button,
+  PrivateRoute,
+};

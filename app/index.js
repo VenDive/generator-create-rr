@@ -163,6 +163,9 @@ module.exports = class extends Generator {
     }
     switch (this.answers.ui_library) {
       case config.ui.ant.value: {
+        config.ant_files.forEach(file => {
+          copyToPath(file, directory, answers);
+        });
         if (this.ui_library_answers.login) {
           config.withLogin.forEach(file => {
             copyToPath(file, directory, answers);

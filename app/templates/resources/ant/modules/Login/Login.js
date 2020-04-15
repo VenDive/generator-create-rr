@@ -49,7 +49,7 @@ const Login = (props) => {
           },
         ]}
       >
-        <Input />
+        <Input type="email" />
       </Form.Item>
       <Form.Item
         label="Password"

@@ -1,0 +1,7 @@
+{
+  "@primary-color": "#005D66",
+  "@form-item-label-height": "0",
+  "@form-vertical-label-padding": "9px 0",
+  "input-padding-vertical-base": "8px",
+  "@typography-title-margin-bottom": "32px"
+}

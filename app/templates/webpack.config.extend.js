@@ -12,11 +12,20 @@
  * `./node_modules/marcopeg-react-scripts/config/webpack.config.${env}.js`
  *
  */
-const rewireEslint = require('./rewire-eslint');
+const {
+  override,<% if (ui_library === 'ant') { %>fixBabelImports, addLessLoader,<% } %>useEslintRc,
+} = require('customize-cra-temp');
+<% if (ui_library === 'ant') { %>const theme = require('./theme.json');<% } %>
 
-module.exports = (webpackConfig) => {
-  // here you can extend your webpackConfig at will
-  let config = webpackConfig;
-  config = rewireEslint(config);
-  return config;
-};
+module.exports = override(
+<% if (ui_library === 'ant') { %>fixBabelImports('import', {
+    libraryName: 'antd',
+    libraryDirectory: 'es',
+    style: true,
+  }),<% } %>
+  useEslintRc(),
+<% if (ui_library === 'ant') { %>addLessLoader({
+    javascriptEnabled: true,
+    modifyVars: theme,
+  }, 'react-scripts-rewired'),<% } %>
+);

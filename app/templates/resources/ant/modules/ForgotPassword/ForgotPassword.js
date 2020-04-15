@@ -25,7 +25,7 @@ const ForgotPassword = (props) => {
         <h2>Forgot Password</h2>
         <Form
           name="normal_login"
-          className="login-form"
+          className="forgot-password-form"
           initialValues={{
             remember: true,
           }}
@@ -44,6 +44,7 @@ const ForgotPassword = (props) => {
             <Input
               prefix={<MailOutlined className="site-form-item-icon" />}
               placeholder="Please enter your email address."
+              type="email"
             />
           </Form.Item>
           <Form.Item>
