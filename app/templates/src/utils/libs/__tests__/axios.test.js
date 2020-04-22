@@ -1,4 +1,4 @@
-import axios, { onGetToken, onGetHeaders } from '../../utils/libs/axios';
+import axios, { onGetToken, onGetHeaders } from '../axios';
 
 describe('axios', () => {
   it('should return token', () => {
