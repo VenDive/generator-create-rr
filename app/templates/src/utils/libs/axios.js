@@ -60,7 +60,7 @@ export const onGetHeaders = (type) => {
  * @param {String} headerVariant* required, by default 'authorization'
  * @return {Object} XHR response
  */
-export const request = async ({
+const request = async ({
   url,
   method,
   data,
@@ -149,3 +149,5 @@ export const setupInterceptors = ({ debug = false }) => {
     },
   );
 };
+
+export default request;

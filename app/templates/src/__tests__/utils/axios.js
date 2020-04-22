@@ -1,4 +1,4 @@
-import { onGetToken, request, onGetHeaders } from '../../utils/libs/axios';
+import axios, { onGetToken, onGetHeaders } from '../../utils/libs/axios';
 
 describe('axios', () => {
   it('should return token', () => {
@@ -27,12 +27,12 @@ describe('axios', () => {
 
   it('should throw error url is missing', async () => {
     const error = 'request func arg @param url is missing';
-    expect(request({})).rejects.toEqual(new Error(error));
+    expect(axios({})).rejects.toEqual(new Error(error));
   });
 
   it('should throw error method is missing', async () => {
     const url = 'url';
     const error = 'request func arg @param method is missing. Valid options "GET"|"POST"|"PUT" etc';
-    expect(request({ url })).rejects.toEqual(new Error(error));
+    expect(axios({ url })).rejects.toEqual(new Error(error));
   });
 });
