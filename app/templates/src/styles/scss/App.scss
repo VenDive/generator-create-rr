@@ -1,7 +1,0 @@
-@import './main/main';
-<% if (ui_library === 'ant') { %>
-<% if (ui_login) { %>
-@import './main/login';
-<% }  %>
-@import '~antd/dist/antd.css';
-<% }  %>

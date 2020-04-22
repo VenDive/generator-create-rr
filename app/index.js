@@ -53,10 +53,19 @@ module.exports = class extends Generator {
         default: "0.1.0"
       },
       {
-        type: "confirm",
+        type: "list",
         name: "private",
         message: "Is this repo private?(private repo won't be able to npm publish)",
-        default: false
+        choices: [
+          {
+            name: "Yes",
+            value: true
+          },
+          {
+            name: "No",
+            value: false
+          },
+        ],
       },
       {
         type: "list",
@@ -92,10 +101,19 @@ module.exports = class extends Generator {
       if (this.answers.ui_library === config.ui.material.value || this.answers.ui_library === config.ui.ant.value) {
         this.ui_library_answers = await this.prompt([
           {
-            type: "confirm",
+            type: "list",
             name: "login",
             message: "Do you need Login Screen?",
-            default: false,
+            choices: [
+              {
+                name: "Yes",
+                value: true
+              },
+              {
+                name: "No",
+                value: false
+              },
+            ],
             required: true
           }
         ]);
@@ -103,19 +121,12 @@ module.exports = class extends Generator {
     }
   }
   writing() {
-    const directory = this.answers.dirName.replace(/ /g, '_').replace(/-/g, '_').replace(/\./g, '').replace(/,/g, '').replace(/&/g, 'N');
-    mkdirp.sync(directory);
-    const answers = {
-      app_name: this.answers.name.replace(/ /g, '-').replace(/_/g, '-').replace(/\./g, '').replace(/,/g, ''),
-      app_version: this.answers.app_version,
-      title: this.answers.name,
-      year: new Date().getFullYear(),
-      ui_library :this.answers.ui_library,
-      ui_login: this.ui_library_answers.login,
-      private: this.answers.private,
-      transaltion: this.answers.translation,
+    const cleanName = (name, replaceWith) => {
+      name = name.replace(/\s+/gi, replaceWith); // Replace white space with dash
+      return name.replace(/[^a-zA-Z0-9\-]/gi, ''); // Strip any special charactere
     }
-    config.files.forEach(file => {
+    const copyToPath = (file, directory, answers) => {
+      console.log(file, directory, answers);
       if (file.isTemplate) {
         this.fs.copyTpl(
           this.templatePath(file.source),
@@ -128,97 +139,75 @@ module.exports = class extends Generator {
           this.destinationPath(directory+ '/' + file.destination),
         );
       }
+    }
+    const directory = cleanName(this.answers.dirName, '_');
+    mkdirp.sync(directory);
+    const answers = {
+      app_name: cleanName(this.answers.name, '-'),
+      app_version: this.answers.app_version,
+      title: this.answers.name,
+      year: new Date().getFullYear(),
+      ui_library :this.answers.ui_library,
+      ui_login: this.ui_library_answers.login,
+      private: this.answers.private,
+      translation: this.answers.translation,
+    }
+    config.files.forEach(file => {
+      copyToPath(file, directory, answers);
     });
     if (this.answers.translation) {
       this.fs.copy(
         this.templatePath('resources/translationsResources/translations'),
         this.destinationPath(directory+'/src/translations')
       );
-      this.fs.copy(
-        this.templatePath('resources/translationsResources/UserDetails.js'),
-        this.destinationPath(directory+'/src/components/UserDetails.js')
-      );
     }
     switch (this.answers.ui_library) {
       case config.ui.ant.value: {
+        config.ant_files.forEach(file => {
+          copyToPath(file, directory, answers);
+        });
         if (this.ui_library_answers.login) {
-          if (this.answers.translation) {
-            this.fs.copy(
-              this.templatePath('resources/ant/login/components/LoginWithTranslation.js'),
-              this.destinationPath(directory+'/src/components/login/Login.js')
-            );
-          } else {
-            this.fs.copy(
-              this.templatePath('resources/ant/login/components/Login.js'),
-              this.destinationPath(directory+'/src/components/login/Login.js')
-            );
-          }
-          this.fs.copy(
-            this.templatePath('resources/ant/login/containers/loginContainer.js'),
-            this.destinationPath(directory+'/src/containers/loginContainer.js')
-          );
-          this.fs.copy(
-            this.templatePath('resources/ant/login/actions/loginActions.js'),
-            this.destinationPath(directory+'/src/redux/actions/loginActions.js')
-          );
-          this.fs.copy(
-            this.templatePath('resources/ant/login/actions/index.js'),
-            this.destinationPath(directory+'/src/redux/actions/index.js')
-          );
-          this.fs.copy(
-            this.templatePath('resources/ant/login/reducers/authReducer.js'),
-            this.destinationPath(directory+'/src/redux/reducers/authReducer.js')
-          );
-          this.fs.copy(
-            this.templatePath('resources/ant/login/reducers/rootReducer.js'),
-            this.destinationPath(directory+'/src/redux/reducers/rootReducer.js')
-          );
-          this.fs.copy(
-            this.templatePath('resources/ant/login/style/login.scss'),
-            this.destinationPath(directory+'/src/styles/scss/main/login.scss')
-          );
-          this.fs.copy(
-            this.templatePath('resources/ant/login/configs/constants.js'),
-            this.destinationPath(directory+'/src/configs/constants.js')
-          );
-          this.fs.copy(
-            this.templatePath('resources/ant/login/configs/messages.js'),
-            this.destinationPath(directory+'/src/configs/messages.js')
-          );
+          config.withLogin.forEach(file => {
+            copyToPath(file, directory, answers);
+          });
+          config.ant_login_files.forEach(file => {
+            copyToPath(file, directory, answers);
+          });
         }
         break;
       }
       case config.ui.material.value: {
         if (this.ui_library_answers.login) {
-          this.fs.copy(
-            this.templatePath('resources/material/SignIn.js'),
-            this.destinationPath(directory+'/src/components/SignIn.js')
-          );
+          config.withLogin.forEach(file => {
+            copyToPath(file, directory, answers);
+          });
+          config.material_login_files.forEach(file => {
+            copyToPath(file, directory, answers);
+          });
         }
-        break;
-      }
-      case config.ui.semantic.value: {
-        break;
-      }
-      case config.ui.bootstrap.value: {
         break;
       }
     }
   }
   install() {
-    const directory = this.answers.dirName.replace(/ /g, '_').replace(/-/g, '_').replace(/\./g, '').replace(/,/g, '').replace(/&/g, 'N');
+    const cleanName = (name, replaceWith) => {
+      name = name.replace(/\s+/gi, replaceWith); // Replace white space with dash
+      return name.replace(/[^a-zA-Z0-9\-]/gi, ''); // Strip any special charactere
+    }
+    const directory = cleanName(this.answers.dirName, '_');
     var npmdir = process.cwd() + '/' + directory;
     process.chdir(npmdir);
-    fs.writeFileSync('.env', 'NODE_PATH=src');
+    fs.writeFileSync('.env', `REACT_APP_ENCRYPTION_KEY = 'ee06040416674a04af3ff4f7881b76f2'`);
     this.npmInstall();
     var packages = ['axios', 'crypto-js'];
     if (this.answers.translation) {
-      packages.push('i18next@17.0.13');
-      packages.push('react-i18next@10.12.2');
+      packages.push('i18next@19.3.3');
+      packages.push('react-i18next@11.3.3');
     }
     switch (this.answers.ui_library) {
       case config.ui.ant.value: {
         packages.push('antd');
+        packages.push('@ant-design/icons');
         break;
       }
       case config.ui.material.value: {
@@ -226,16 +215,8 @@ module.exports = class extends Generator {
         packages.push('@material-ui/icons');
         break;
       }
-      case config.ui.semantic.value: {
-        packages.push('semantic-ui-react');
-        break;
-      }
-      case config.ui.bootstrap.value: {
-        packages.push('bootstrap');
-        packages.push('react-bootstrap');
-        break;
-      }
     }
     this.npmInstall(packages, { 'save': true });
   }
 };
+
