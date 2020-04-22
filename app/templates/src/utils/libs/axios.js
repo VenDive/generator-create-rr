@@ -24,7 +24,7 @@ const onGetTimeZone = () => new Date().toString().split(' ')[5];
  * @define type: possible values 'authorization' || 'public'
  * @return {Object}
  */
-export const onGetHeaders = type => {
+export const onGetHeaders = (type) => {
   const ALL_TYPES = ['authorization', 'public'];
   if (!type) {
     throw new Error('request func internal onGetHeaders arg @param type is missing');
@@ -74,7 +74,7 @@ export const request = async ({
     throw new Error('request func arg @param url is missing');
   }
   if (!method) {
-    throw new Error(`request func arg @param method is missing. Valid options "GET"|"POST"|"PUT" etc`);
+    throw new Error('request func arg @param method is missing. Valid options "GET"|"POST"|"PUT" etc');
   }
 
   // Overrides headers object based on variant if "customHeaders" object provided
@@ -114,24 +114,24 @@ export const setupInterceptors = ({ debug = false }) => {
   };
 
   axios.interceptors.response.use(
-    response => {
+    (response) => {
       echo({ show: debug, type: 'dir', message: response });
       return response;
     },
-    error => {
+    (error) => {
       if (error.response) {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
         const { status } = error.response;
-        if (status === 401 ) {
+        if (status === 401) {
           // 401 status means unauthorized
           // Add code to handle unauthorized request
         }
-        if (status === 404 ) {
+        if (status === 404) {
           // 404 status means not found
           // Add code to handle a request whin API is not available
         }
-        if (status === 500 ) {
+        if (status === 500) {
           // 500 status means server error
           // Add code to handle when error happens on tne server
         }
