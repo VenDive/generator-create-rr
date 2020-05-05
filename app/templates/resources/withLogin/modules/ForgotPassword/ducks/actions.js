@@ -15,13 +15,17 @@ export const forgotPasswordInProgress = () => ({
   type: actionTypes.FORGOT_PASSWORD_INPROGRESS,
 });
 
-export const forgotPassword = (email) => (
-  (dispatch) => {
+export const forgotPassword = (email) => async (dispatch) => {
     dispatch(forgotPasswordInProgress());
-    forgotPasswordApi({ email }).then((response) => {
+    try {
+      const response = await forgotPasswordApi({ email });
       dispatch(forgotPasswordSuccess(response));
-    }).catch((error) => {
-      dispatch(forgotPasswordFail(error));
-    });
+    }
+    catch(error){
+      const authError = {
+        message: error.response.data,
+        isError: true,
+      };
+      dispatch(forgotPasswordFail(authError));
+    };
   }
-);
