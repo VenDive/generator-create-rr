@@ -10,6 +10,7 @@
     "history": "^4.10.1",
     "node-sass-chokidar": "^1.4.0",
     "prop-types": "^15.7.2",
+    "jest-sonar-reporter": "^2.0.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-redux": "^7.2.0",
