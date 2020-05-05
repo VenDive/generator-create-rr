@@ -12,7 +12,7 @@ import { LOGIN } from 'configs/routeNames';
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
-    render={props => (getFromLocal(TOKEN_KEY, false) ? (<Component {...props} />) : (
+    render={(props) => (getFromLocal(TOKEN_KEY, false) ? (<Component {...props} />) : (
       <Redirect
         to={{
           pathname: LOGIN,

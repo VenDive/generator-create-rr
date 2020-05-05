@@ -1,6 +1,5 @@
 {
   "name": "generator-create-rr",
-  "version": "1.0.1",
   "version": "1.0.2",
   "description": "it is a boilerplate for react redux projects with basic file structure and libraries",
   "files": [

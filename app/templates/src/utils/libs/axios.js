@@ -80,6 +80,7 @@ const request = async ({
   // Overrides headers object based on variant if "customHeaders" object provided
   const authHeaders = onGetHeaders(headerVariant);
   const headers = { ...customHeaders, ...authHeaders };
+  // eslint-disable-next-line no-useless-catch
   try {
     const result = await axios(url, {
       method,
