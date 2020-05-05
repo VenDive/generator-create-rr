@@ -30,4 +30,4 @@ export const removeFromLocal = (key) => {
   global.localStorage.removeItem(key);
 };
 
-export const existInLocal = (key) => global.localStorage.getItem(key) != null;
+export const existInLocal = key => global.localStorage.getItem(key) != null;

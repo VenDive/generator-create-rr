@@ -90,6 +90,11 @@ const config = {
       destination: 'webpackDevServer.config.extend.js',
       isTemplate: false,
     },
+    {
+      source: '.prettierrc',
+      destination: '.prettierrc',
+      isTemplate: false,
+    },
   ],
   withLogin:[
     {

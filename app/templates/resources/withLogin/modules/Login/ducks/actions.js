@@ -15,13 +15,16 @@ export const loginInProgress = () => ({
   type: actionTypes.LOGIN_INPROGRESS,
 });
 
-export const loginUser = (params) => (
-  (dispatch) => {
+export const loginUser = (params) => async (dispatch) => {
     dispatch(loginInProgress());
-    loginApi(params).then((response) => {
+    try {
+      const response = await loginApi(params);
       dispatch(loginSuccess(response));
-    }).catch((error) => {
-      dispatch(loginFail(error));
-    });
+    } catch(error) {
+      const authError = {
+        message: error.response.data,
+        isError: true,
+      };
+      dispatch(loginFail(authError));
+    };
   }
-);
